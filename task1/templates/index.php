@@ -18,13 +18,18 @@
     <div class="container">
       <div class="col-sm-12">
         <h1>File Manager</h1>
-
-        <div class="alert alert-danger" role="alert">
-          A simple danger alert—check it out!
-        </div> 
-        <div class="alert alert-success" role="alert">
-          A simple danger alert—check it out!
-        </div> 
+        
+        <?php foreach ($messages as $message) { ?>
+          <?php if ( $message['rrtype'] == 'error' ) { ?>
+            <div class="alert alert-danger" role="alert">
+              <?php echo $message['value'] ?>
+            </div> 
+          <?php } else if ( $message['rrtype'] == 'success' ) { ?>
+            <div class="alert alert-success" role="alert">
+                <?php echo $message['value'] ?>
+            </div> 
+          <?php } ?>
+        <?php } ?>
 
         <form class="form-inline" enctype="multipart/form-data" action="" method="POST">
           <input type="hidden" name="MAX_FILE_SIZE" value="30000" />

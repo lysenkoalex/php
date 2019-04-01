@@ -10,11 +10,12 @@
         $result = validation(dirname(UPLOADS_PATH), 'd');
         if ( $result === true )
         {
-            if ( !file_exists($userfile) )
+            if ( !file_exists($uploadfile) )
             {
                 if ( move_uploaded_file($tmp_name, $uploadfile) ) 
                 {
-                    chmod($target, CHMOD_MASK);
+                    var_dump("asdfasdfsadfsaf".$uploadfile);
+                    chmod($uploadfile, CHMOD_MASK);
                 } 
                 else 
                 {
@@ -26,7 +27,6 @@
                 $result = FILE_IS_EXIST;
             }
         }
-        var_dump($result);
         return $result;
     }
     
@@ -34,9 +34,15 @@
     {
         $file_path = $_SERVER['DOCUMENT_ROOT'].'/'.SITE_PATH.UPLOADS_PATH.$file_name;
         $result = validation($file_path, 'f');
-        if ( $result === true )
+        if ( !is_array($result) )
         {
             $result = unlink($file_path);
+            return array(
+                array(
+                    'rrtype'  => 'success',
+                    'value' => FILE_REMOVED
+                )
+            );
         }
         return $result;
     }
@@ -90,23 +96,48 @@
     {
         if ( ($file_or_dir == 'd') && !is_dir($path) ) 
         {
-            return FOLDER_NOT_EXIST;
+            return array(
+                array(
+                    'rrtype'  => 'error',
+                    'value' => FOLDER_NOT_EXIST
+                )
+            );
         }
         elseif ( ($file_or_dir == 'f') && !is_file($path) ) 
         {
-            return FILE_NOT_EXIST;
+            return array(
+                array(
+                    'rrtype'  => 'error',
+                    'value' => FILE_NOT_EXIST
+                )
+            );
         }
         else if ( !file_exists($path) )
         {
-            return FILE_IS_EXIST;
+            return array(
+                array(
+                    'rrtype'  => 'error',
+                    'value' => FILE_IS_EXIST
+                )
+            );
         }
         else if ( !is_writable($path) )
         {
-            return DONT_HAVE_PERMITIONS;
+            return array(
+                array(
+                    'rrtype'  => 'error',
+                    'value' => DONT_HAVE_PERMITIONS
+                )
+            );
         }
         else if ( !is_readable($path) ) 
         {
-            return NO_READABLE;
+            return array(
+                array(
+                    'rrtype'  => 'error',
+                    'value' => NO_READABLE
+                )
+            );
         } 
         else {
             return true;

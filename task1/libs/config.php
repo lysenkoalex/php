@@ -2,7 +2,7 @@
 	define('SITE_PATH', 'task1/');
 	define('TEMPLATE_PATH', 'templates/');
     define('UPLOADS_PATH', 'files/');
-    define('CHMOD_MASK', '0777');
+    define('CHMOD_MASK', 0777);
 
 
     define('FOLDER_NOT_EXIST', 'Folder not exist');
@@ -11,5 +11,6 @@
     define('DONT_HAVE_PERMITIONS', 'You don\'t have permition');
     define('NO_READABLE', 'Not readable');
     define('FILE_NOT_SAVE', 'Can not upload file');
+    define('FILE_REMOVED', 'File removed successful');
 
 ?>

@@ -22,6 +22,9 @@
         <div class="alert alert-danger" role="alert">
           A simple danger alert—check it out!
         </div> 
+        <div class="alert alert-success" role="alert">
+          A simple danger alert—check it out!
+        </div> 
 
         <form class="form-inline" enctype="multipart/form-data" action="" method="POST">
           <input type="hidden" name="MAX_FILE_SIZE" value="30000" />

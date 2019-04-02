@@ -2,9 +2,8 @@
     function upload($tmp_name, $userfile)
     {
 
-        $uploaddir = $_SERVER['DOCUMENT_ROOT'].'/'.SITE_PATH.UPLOADS_PATH;
+        $uploaddir = UPLOADS_PATH;
         $uploadfile = $uploaddir . $userfile;
-
         $result = validation($uploaddir, 'd');
         if ( !is_array($result))
         {
@@ -13,6 +12,10 @@
                 if ( move_uploaded_file($tmp_name, $uploadfile) ) 
                 {
                     chmod($uploadfile, CHMOD_MASK);
+		    $result =  array( array(
+                        'type'  => 'success',
+                        'value' => FILE_UPLOADED
+                        ));
                 } 
                 else 
                 {
@@ -30,16 +33,12 @@
                     ));
             }
         }
-        return array( array(
-                'type'  => 'success',
-                'value' => FILE_UPLOADED
-            )
-        );
+        return $result;
     }
     
     function delete($file_name)
     {
-        $file_path = $_SERVER['DOCUMENT_ROOT'].'/'.SITE_PATH.UPLOADS_PATH.$file_name;
+        $file_path = UPLOADS_PATH.$file_name;
         $result = validation($file_path, 'f');
         if ( !is_array($result) )
         {

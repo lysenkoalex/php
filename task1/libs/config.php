@@ -1,7 +1,7 @@
 <?php
-	define('SITE_PATH', 'task1/');
+	define('SITE_PATH', '~user19/php/task1/');
 	define('TEMPLATE_PATH', 'templates/');
-    define('UPLOADS_PATH', 'files/');
+    define('UPLOADS_PATH', '/home/user19/public_html/php/task1/files/');
     define('CHMOD_MASK', 0777);
 
 

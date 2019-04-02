@@ -32,7 +32,6 @@
         <?php } ?>
 
         <form class="form-inline" enctype="multipart/form-data" action="" method="POST">
-          <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
 
           <div class="form-group mx-sm-3 mb-2">
             <label for="upload-file-form" class="sr-only">Upload file input</label>

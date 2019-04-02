@@ -20,11 +20,11 @@
         <h1>File Manager</h1>
         
         <?php foreach ($messages as $message) { ?>
-          <?php if ( $message['rrtype'] == 'error' ) { ?>
+          <?php if ( $message['type'] == 'error' ) { ?>
             <div class="alert alert-danger" role="alert">
               <?php echo $message['value'] ?>
             </div> 
-          <?php } else if ( $message['rrtype'] == 'success' ) { ?>
+          <?php } else if ( $message['type'] == 'success' ) { ?>
             <div class="alert alert-success" role="alert">
                 <?php echo $message['value'] ?>
             </div> 

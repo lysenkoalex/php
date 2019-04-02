@@ -14,12 +14,8 @@
     {
         $messages = delete($uploadDir . $_POST["deleteFile"]);
     }
-
-    //echo validation('files/1.txt', 'f');
-    //echo delete('files/1.txt');
+    
     $list_of_file = info(UPLOADS_PATH);
-
-    //var_dump(info(UPLOADS_PATH));
 
     include_once TEMPLATE_PATH.'index.php';
 

@@ -1,33 +1,40 @@
 <?php 
-
-
     function upload($tmp_name, $userfile)
     {
 
         $uploaddir = $_SERVER['DOCUMENT_ROOT'].'/'.SITE_PATH.UPLOADS_PATH;
         $uploadfile = $uploaddir . $userfile;
 
-        $result = validation(dirname(UPLOADS_PATH), 'd');
-        if ( $result === true )
+        $result = validation($uploaddir, 'd');
+        if ( !is_array($result))
         {
             if ( !file_exists($uploadfile) )
             {
                 if ( move_uploaded_file($tmp_name, $uploadfile) ) 
                 {
-                    var_dump("asdfasdfsadfsaf".$uploadfile);
                     chmod($uploadfile, CHMOD_MASK);
                 } 
                 else 
                 {
-                    $result = FILE_NOT_SAVE;
+                    $result = array(array(
+                            'type'  => 'error',
+                            'value' => FILE_NOT_SAVE
+                        ));
                 }
             } 
             else 
             {
-                $result = FILE_IS_EXIST;
+                $result = array( array(
+                        'type'  => 'error',
+                        'value' => FILE_IS_EXIST
+                    ));
             }
         }
-        return $result;
+        return array( array(
+                'type'  => 'success',
+                'value' => FILE_UPLOADED
+            )
+        );
     }
     
     function delete($file_name)
@@ -37,9 +44,8 @@
         if ( !is_array($result) )
         {
             $result = unlink($file_path);
-            return array(
-                array(
-                    'rrtype'  => 'success',
+            return array( array(
+                    'type'  => 'success',
                     'value' => FILE_REMOVED
                 )
             );
@@ -98,7 +104,7 @@
         {
             return array(
                 array(
-                    'rrtype'  => 'error',
+                    'type'  => 'error',
                     'value' => FOLDER_NOT_EXIST
                 )
             );
@@ -107,7 +113,7 @@
         {
             return array(
                 array(
-                    'rrtype'  => 'error',
+                    'type'  => 'error',
                     'value' => FILE_NOT_EXIST
                 )
             );
@@ -116,7 +122,7 @@
         {
             return array(
                 array(
-                    'rrtype'  => 'error',
+                    'type'  => 'error',
                     'value' => FILE_IS_EXIST
                 )
             );
@@ -125,7 +131,7 @@
         {
             return array(
                 array(
-                    'rrtype'  => 'error',
+                    'type'  => 'error',
                     'value' => DONT_HAVE_PERMITIONS
                 )
             );
@@ -134,7 +140,7 @@
         {
             return array(
                 array(
-                    'rrtype'  => 'error',
+                    'type'  => 'error',
                     'value' => NO_READABLE
                 )
             );
